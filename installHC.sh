@@ -2,6 +2,7 @@
 /opt/dsm/dsm_c -action changesetting -name settings.configuration.webserviceAPIEnabled -Value true
 /opt/dsm/dsm_c -action changesetting -name settings.configuration.agentInitiatedActivation -Value 1
 /opt/dsm/dsm_c -action changesetting -name settings.configuration.agentInitiatedActivationActiveHost -Value 2
+/opt/dsm/dsm_c -action changesetting -name settings.configuration.defaultHeartbeatPeriod -value 1
 /opt/dsm/dsm_s start
 #Enable HC server
 cd /opt/
