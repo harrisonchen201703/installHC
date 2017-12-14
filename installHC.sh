@@ -5,7 +5,8 @@
 /opt/dsm/dsm_c -action changesetting -name settings.configuration.defaultHeartbeatPeriod -value 1
 echo "mode.tester=true" >> /opt/dsm/webclient/webapps/ROOT/WEB-INF/dsm.properties
 echo "mode.tester.key=750fdf0e-2a26-11d1-a3ea-080036587f03" >> /opt/dsm/webclient/webapps/ROOT/WEB-INF/dsm.properties
-/opt/dsm/dsm_s start
+/opt/dsm/dsm_s stop;
+/opt/dsm/dsm_s start;
 #Enable HC server
 cd /opt/
 wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u152-b16/aa0333dd3019491ca4f6ddbe78cdb6d0/jdk-8u152-linux-x64.rpm"
