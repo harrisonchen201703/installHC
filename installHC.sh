@@ -10,8 +10,35 @@ sleep 10
 /opt/dsm/dsm_s start
 #Enable HC server
 cd /opt/
-wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u152-b16/aa0333dd3019491ca4f6ddbe78cdb6d0/jdk-8u152-linux-x64.rpm"
-rpm -ivh jdk-8u152-linux-x64.rpm
+
+jdk_version=${1:-8}
+ext=${2:-rpm}
+
+readonly url="http://www.oracle.com"
+readonly jdk_download_url1="$url/technetwork/java/javase/downloads/index.html"
+readonly jdk_download_url2=$(
+    curl -s $jdk_download_url1 | \
+    egrep -o "\/technetwork\/java/\javase\/downloads\/jdk${jdk_version}-downloads-.+?\.html" | \
+    head -1 | \
+    cut -d '"' -f 1
+)
+[[ -z "$jdk_download_url2" ]] && echo "Could not get jdk download url - $jdk_download_url1" >> /dev/stderr
+
+readonly jdk_download_url3="${url}${jdk_download_url2}"
+readonly jdk_download_url4=$(
+    curl -s $jdk_download_url3 | \
+    egrep -o "http\:\/\/download.oracle\.com\/otn-pub\/java\/jdk\/[8-9](u[0-9]+|\+).*\/jdk-${jdk_version}.*(-|_)linux-(x64|x64_bin).$ext"
+)
+
+for dl_url in ${jdk_download_url4[@]}; do
+    wget --no-cookies \
+         --no-check-certificate \
+         --header "Cookie: oraclelicense=accept-securebackup-cookie" \
+         -N $dl_url
+    break;
+done
+
+rpm -ivh jdk*
 wget --no-passive-ftp ftp://52.168.147.42/qa-hc-server-2.1.4-bin.tar.gz
 tar xvof qa-hc-server-2.1.4-bin.tar.gz
 cd qa-hc-server-2.1.4
