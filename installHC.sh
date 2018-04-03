@@ -1,4 +1,5 @@
 #!/bin/sh
+/opt/ds_agent/dsa_control -m policyID:1
 /opt/dsm/dsm_c -action changesetting -name settings.configuration.webserviceAPIEnabled -Value true
 /opt/dsm/dsm_c -action changesetting -name settings.configuration.agentInitiatedActivation -Value 1
 /opt/dsm/dsm_c -action changesetting -name settings.configuration.agentInitiatedActivationActiveHost -Value 2
