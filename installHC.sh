@@ -40,7 +40,7 @@ for dl_url in ${jdk_download_url4[@]}; do
 done
 
 rpm -ivh jdk*
-wget https://github.com/harrisonchen201703/installHC/raw/master/qa-hc-server-2.3.4-bin.tar.gz
-tar xvof qa-hc-server-2.3.4-bin.tar.gz
-cd qa-hc-server-2.3.4
-java -jar qa-hc-server-2.3.4.jar &
+wget https://github.com/harrisonchen201703/installHC/raw/master/qa-hc-server-2.1.4-bin.tar.gz
+tar xvof qa-hc-server-2.1.4-bin.tar.gz
+cd qa-hc-server-2.1.4
+java -jar qa-hc-server-2.1.4.jar &
