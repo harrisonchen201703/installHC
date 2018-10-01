@@ -12,35 +12,7 @@ sleep 10
 #Enable HC server
 cd /opt/
 
-jdk_version=${1:-8}
-ext=${2:-rpm}
-
-readonly url="http://www.oracle.com"
-readonly jdk_download_url1="$url/technetwork/java/javase/downloads/index.html"
-readonly jdk_download_url2=$(
-    curl -s $jdk_download_url1 | \
-    egrep -o "\/technetwork\/java/\javase\/downloads\/jdk${jdk_version}-downloads-.+?\.html" | \
-    head -1 | \
-    cut -d '"' -f 1
-)
-[[ -z "$jdk_download_url2" ]] && echo "Could not get jdk download url - $jdk_download_url1" >> /dev/stderr
-
-readonly jdk_download_url3="${url}${jdk_download_url2}"
-readonly jdk_download_url4=$(
-    curl -s $jdk_download_url3 | \
-    egrep -o "http\:\/\/download.oracle\.com\/otn-pub\/java\/jdk\/[8-9](u[0-9]+|\+).*\/jdk-${jdk_version}.*(-|_)linux-(x64|x64_bin).$ext"
-)
-
-for dl_url in ${jdk_download_url4[@]}; do
-    wget --no-cookies \
-         --no-check-certificate \
-         --header "Cookie: oraclelicense=accept-securebackup-cookie" \
-         -N $dl_url
-    break;
-done
-
-rpm -ivh jdk*
 wget https://github.com/harrisonchen201703/installHC/raw/master/qa-hc-server-2.3.8-bin.tar.gz
 tar xvof qa-hc-server-2.3.8-bin.tar.gz
 cd qa-hc-server-2.3.8
-java -jar qa-hc-server-2.3.8.jar &
+/opt/dsm/jre/bin/java -jar qa-hc-server-2.3.8.jar &
