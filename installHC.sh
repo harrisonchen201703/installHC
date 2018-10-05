@@ -9,6 +9,10 @@ echo "mode.tester.key=750fdf0e-2a26-11d1-a3ea-080036587f03" >> /opt/dsm/webclien
 /opt/dsm/dsm_s restart
 sleep 10
 /opt/dsm/dsm_s start
+
+#install nmap for firewall tests
+yum install nmap -y
+
 #Enable HC server
 cd /opt/
 
