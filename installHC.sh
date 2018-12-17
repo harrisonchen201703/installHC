@@ -16,9 +16,9 @@ yum install nmap -y
 #Enable HC server
 cd /opt/
 
-wget https://github.com/harrisonchen201703/installHC/raw/master/qa-hc-server-2.3.8-bin.tar.gz
-tar xvof qa-hc-server-2.3.8-bin.tar.gz
-mv /opt/qa-hc-server-2.3.8/config/restServer.properties /opt/qa-hc-server-2.3.8/config/restServer.properties.orig
-sed s/9998/80/ < /opt/qa-hc-server-2.3.8/config/restServer.properties.orig > /opt/qa-hc-server-2.3.8/config/restServer.properties
-cd qa-hc-server-2.3.8
-/opt/dsm/jre/bin/java -jar qa-hc-server-2.3.8.jar &
+wget https://github.com/harrisonchen201703/installHC/raw/master/qa-hc-server-2.3.14-bin.tar.gz
+tar xvof qa-hc-server-2.3.14-bin.tar.gz
+mv /opt/qa-hc-server-2.3.14/config/restServer.properties /opt/qa-hc-server-2.3.14/config/restServer.properties.orig
+sed s/9998/80/ < /opt/qa-hc-server-2.3.14/config/restServer.properties.orig > /opt/qa-hc-server-2.3.14/config/restServer.properties
+cd qa-hc-server-2.3.14
+/opt/dsm/jre/bin/java -jar qa-hc-server-2.3.14.jar &
